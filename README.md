@@ -27,11 +27,15 @@ You can install these dependencies by this command.
 `pip install -r requirements.txt
 `
 ## Design
-This is sequence diagram will show the sequence of events that will happened if customer loging in to the store.
-![Sequence Diagram](SequenceDiagram.png)
-
 This is the class diagram which will show the relationship between all of the classes.
 ![UML Diagram](UMLDiagram.png)
+
+## Example screenshots of the program
+
+![Example1](Screenshot_1.png)
+![Example2](Screenshot_2.png)
+![Example3](Screenshot_3.png)
+![Example4](Screenshot_4.png)
 
 ## Design Patterns Used
 In this project I used facade design pattern as a way to simplify the interface between "Monitor" class and the rest of the class in the lower layer. Facade act like a medium and lower interaction between representation layered and domain layer. This helps reduce the complexity of the code and make it easier to maintain.
