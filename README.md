@@ -26,6 +26,10 @@ You can install these dependencies by this command.
 
 `pip install -r requirements.txt
 `
+
+## How to use
+Simply run the file named `Monitor.py`
+
 ## Design
 This is the class diagram which will show the relationship between all of the classes.
 ![UML Diagram](UMLDiagram.png)
