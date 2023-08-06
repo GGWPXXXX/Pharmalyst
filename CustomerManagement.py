@@ -118,7 +118,4 @@ class CustomerManagement(Customer):
                 most_common_category = node.split('_')[0]
         return most_common_category
 
-""" manage = CustomerManagement()
-c1 = Customer()
-c1.name = "John Doe"
-print(manage.create_recommendation(c1)) """
+

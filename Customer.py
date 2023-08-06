@@ -32,6 +32,3 @@ class Customer:
     def address(self, newAddress) -> None:
         self.__address = newAddress
 
-
-""" c1 = Customer('a', '123455', "1234 Main.st")
-print(c1.name) """
