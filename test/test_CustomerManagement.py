@@ -25,7 +25,7 @@ def test_create_recommendation():
 
 
 custom_manage = CustomerManagement()
-
+c1 = Customer(name="John Doe", password="b_6D+Zv*ZB", address="867 Collins Ridges Apt. 591 Charleschester, TN 77343")
 c_fake = Customer(name="fake", password="fakepassword", address="fakeaddress")
 
 test_return_record()
@@ -33,4 +33,3 @@ test_find_record()
 test_add()
 test_create_recommendation()
 
-c1 = Customer(name="John Doe", password="b_6D+Zv*ZB", address="867 Collins Ridges Apt. 591 Charleschester, TN 77343")

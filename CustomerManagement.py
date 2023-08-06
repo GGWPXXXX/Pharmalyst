@@ -55,6 +55,8 @@ class CustomerManagement(Customer):
             if i.name == customer.name and i.password == customer.password: return True             
         return False
     
+
+
     def add(self, customer: Customer) -> bool:
         """    
         Add a new customer to the list and save the updated list to file.
@@ -71,6 +73,7 @@ class CustomerManagement(Customer):
             self.__customer_list.append(customer)
             self.__customer_repo.save_data(self.__customer_list)
             return True
+
         
     def create_recommendation(self, customer: Customer) -> str:
         """This method takes a Customer object and uses their past medication order history to create a 
