@@ -130,4 +130,5 @@ dmypy.json
 .vscode/
 
 # tempCodeRunnerFile
-/tempCodeRunnerFile.py
+tempCodeRunnerFile.py
+
