@@ -14,5 +14,7 @@ class Admin:
     @property
     def password(self) -> str:
         return self.__password
+       
+  
 
     
