@@ -132,4 +132,12 @@ dmypy.json
 # tempCodeRunnerFile
 tempCodeRunnerFile.py
 
+#pycache
+__pycache__/
+
+#.vscode
+.vscode/
+
+#.github
+.github/
 

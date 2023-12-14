@@ -1,5 +1,5 @@
 # Pharmalyst
-
+[![Python package test](https://github.com/GGWPXXXX/Pharmalyst/actions/workflows/python-package.yml/badge.svg)](https://github.com/GGWPXXXX/Pharmalyst/actions/workflows/python-package.yml)
 ## Description
 Pharmalyst is a medication store using python tkinter to build GUI.
 
