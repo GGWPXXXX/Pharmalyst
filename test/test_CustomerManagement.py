@@ -1,5 +1,6 @@
 import sys
 import os
+import unittest
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 sys.path.append(parent_dir)
@@ -7,29 +8,27 @@ sys.path.append(parent_dir)
 from CustomerManagement import CustomerManagement
 from Customer import Customer
 
-def test_return_record():
-    assert isinstance(custom_manage.return_record(c1.name), Customer)
-    assert(custom_manage.return_record(c1.name).name=="John Doe") 
-    assert(custom_manage.return_record(c_fake.name)==None)
+class TestCustomerManagement(unittest.TestCase):
+    def setUp(self) -> None:
+        self.custom_manage = CustomerManagement()
+        self.c1 = Customer(name="John Doe", password="b_6D+Zv*ZB", address="867 Collins Ridges Apt. 591 Charleschester, TN 77343")
+        self.c_fake = Customer(name="fake", password="fakepassword", address="fakeaddress")
 
-def test_find_record():
-    assert(custom_manage.find_record(c1) == True)
-    assert(custom_manage.find_record(c_fake) == False)
+    def test_return_record(self):
+        self.assertIsInstance(self.custom_manage.return_record(self.c1.name), Customer)
+        self.assertEqual(self.custom_manage.return_record(self.c1.name).name, "John Doe") 
+        self.assertEqual(self.custom_manage.return_record(self.c_fake.name), None)
 
-def test_add():
-    assert(custom_manage.add(c1) == False)
+    def test_find_record(self):
+        self.assertTrue(self.custom_manage.find_record(self.c1))
+        self.assertFalse(self.custom_manage.find_record(self.c_fake))
 
-def test_create_recommendation():
-    assert(custom_manage.create_recommendation(c1) == "Psychosis")
+    def test_add(self):
+        self.assertFalse(self.custom_manage.add(self.c1))
 
+    def test_create_recommendation(self):
+        self.assertEqual(self.custom_manage.create_recommendation(self.c1), "Psychosis")
 
-
-custom_manage = CustomerManagement()
-c1 = Customer(name="John Doe", password="b_6D+Zv*ZB", address="867 Collins Ridges Apt. 591 Charleschester, TN 77343")
-c_fake = Customer(name="fake", password="fakepassword", address="fakeaddress")
-
-test_return_record()
-test_find_record()
-test_add()
-test_create_recommendation()
+if __name__ == "__main__":
+    unittest.main()
 
