@@ -66,19 +66,25 @@ class Graph:
             plt.xticks(bin_edges[:-1] + 25, [f"[{bin_edges[i]}, {bin_edges[i+1]})" for i in range(len(bin_edges) - 1)], rotation=90)
 
         else:
-            plt.boxplot(self.__med_db.Quantity, showfliers=True, showmeans=True)
-            plt.xticks([1], ['Quantity'])
-            plt.ylabel("Amount of medications")
-            plt.title("Graph Show Distribution")
-            plt.grid(True)
-            summary_stats = plt.boxplot(self.__med_db.Quantity, showfliers=False, showmeans=True)
+            ax = fig.add_subplot(111)  # Create a subplot for the boxplot
+            ax.boxplot(self.__med_db.Quantity, showfliers=True, showmeans=True)
+            ax.set_xticks([1])
+            ax.set_xticklabels(['Quantity'])
+            ax.set_ylabel("Amount of medications")
+            ax.set_title("Graph Show Distribution")
+            ax.grid(True)
+
+            summary_stats = ax.boxplot(self.__med_db.Quantity, showfliers=False, showmeans=True)
+
             for line in summary_stats['medians']:
-                plt.text(1.1, line.get_ydata()[0]+0.5, f"Median: {line.get_ydata()[0]:.2f}")
+                ax.text(1.1, line.get_ydata()[0] + 0.5, f"Median: {line.get_ydata()[0]:.2f}")
+
             for line in summary_stats['boxes']:
-                plt.text(1.1, line.get_ydata()[0], f"Q1: {line.get_ydata()[0]:.2f}")
-                plt.text(1.1, line.get_ydata()[3], f"Q3: {line.get_ydata()[3]:.2f}")
+                ax.text(1.1, line.get_ydata()[0], f"Q1: {line.get_ydata()[0]:.2f}")
+                ax.text(1.1, line.get_ydata()[3], f"Q3: {line.get_ydata()[3]:.2f}")
 
         plt.tight_layout()
+
         canvas = FigureCanvasTkAgg(fig, master=main_canvas)
         canvas.draw()
         canvas_widget = canvas.get_tk_widget()

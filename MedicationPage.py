@@ -290,7 +290,7 @@ class MedicationPage():
             elif num == 4:
                 self.cardio_condi_page(canvas)
             elif num == 5:
-                self.endocine_condi_page(canvas)
+                self.endocrine_condi_page(canvas)
             elif num == 6:
                 self.infection_condi_page(canvas)
             elif num == 7:
