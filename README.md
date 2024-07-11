@@ -28,7 +28,9 @@ You can install these dependencies by this command.
 `
 
 ## How to use
-Simply run the file named `Monitor.py`
+Windows : You can simply run `Setup.bat ` in your terminal.
+
+MacOS: ou can simply run `MacSetup.py` in your terminal.
 
 ## Design
 This is the class diagram which will show the relationship between all of the classes.

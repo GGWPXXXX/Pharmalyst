@@ -6,6 +6,21 @@ from OrderRepository import OrderRepository
 from datetime import datetime
 from CustomerManagement import CustomerManagement
 
+# constant of each medication's categories
+SKIN = 1
+NEUROLOGICAL = 2
+ALLERGY = 3
+CARDIO = 4
+ENDOCRINE = 5
+INFECTION = 6
+HAEMOTO = 7
+PAIN = 8
+RESPIRATORY = 9
+REPRODUCTIVE = 10
+MUSCOLOSKELETAL = 11
+EYES = 12
+OTHERS = 13
+
 class MedicationPage():
     def __init__(self, window:tk.Tk, customer=None) -> None:
         self.__window = window
@@ -280,32 +295,33 @@ class MedicationPage():
                            7:{"x":70, "y":200}, 8:{"x":370, "y":"200"}, 9:{"x":670, "y":200}, 
                            10:{"x":70, "y":450}, 11:{"x":370, "y":450}, 12:{"x":670, "y":450},
                            13:{"x":70, "y":200}}
+
         def on_click(self, num:int):
-            if num == 1:
+            if num == SKIN:
                 self.skin_condi_page(canvas)
-            elif num == 2:
+            elif num == NEUROLOGICAL:
                 self.neurological_condi_page(canvas)
-            elif num == 3:
+            elif num == ALLERGY:
                 self.allergies_condi_page(canvas)
-            elif num == 4:
+            elif num == CARDIO:
                 self.cardio_condi_page(canvas)
-            elif num == 5:
+            elif num == ENDOCRINE:
                 self.endocrine_condi_page(canvas)
-            elif num == 6:
+            elif num == INFECTION:
                 self.infection_condi_page(canvas)
-            elif num == 7:
+            elif num == HAEMOTO:
                 self.haemoto_condi_page(canvas)
-            elif num == 8:
+            elif num == PAIN:
                 self.pain_condi_page(canvas)
-            elif num == 9:
+            elif num == RESPIRATORY:
                 self.respiratory_condi_page(canvas)
-            elif num == 10:
+            elif num == REPRODUCTIVE:
                 self.reproductive_condi_page(canvas)
-            elif num == 11:
+            elif num == MUSCOLOSKELETAL:
                 self.muscoloskeletal_condi_page(canvas)
-            elif num == 12:
+            elif num == EYES:
                 self.eyes_condition_page(canvas)
-            elif num == 13:
+            elif num == OTHERS:
                 self.others_condi_page(canvas)
         for num in range(min(self.__img_dict.keys()), max(self.__img_dict.keys())+1):
             if num in self.__img_dict:
