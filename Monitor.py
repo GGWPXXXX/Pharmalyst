@@ -1,5 +1,7 @@
 import tkinter as tk
 from Controller import Controller
+
+
 class Monitor(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -10,8 +12,7 @@ class Monitor(tk.Tk):
         self.__canvas.place(x=0, y=0)
         self.__controller = Controller(self.__canvas, self)
         self.__controller.initial()
-        
-        
+
 
 if __name__ == "__main__":
     app = Monitor()

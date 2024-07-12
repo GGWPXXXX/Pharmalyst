@@ -21,6 +21,9 @@ MUSCOLOSKELETAL = 11
 EYES = 12
 OTHERS = 13
 
+# category constant
+IMG_BASE_DIRECTORY = "./Picture"
+
 class MedicationPage():
     def __init__(self, window:tk.Tk, customer=None) -> None:
         self.__window = window
@@ -72,7 +75,7 @@ class MedicationPage():
 
         self.clear_previous_page(canvas)
         self.__bg_img = Image.open(
-            r"./Picture/MedicationPage/MedicationBg.png")
+            IMG_BASE_DIRECTORY + "/MedicationPage/MedicationBg.png")
         self.__bg_img = ImageTk.PhotoImage(self.__bg_img)
         canvas.create_image(0, 0, image=self.__bg_img, anchor="nw")
 
@@ -92,29 +95,29 @@ class MedicationPage():
     
 
         # create information button.
-        self.__info_img = self.open_image(r"./Picture/Button/Information.png", (40, 40))
+        self.__info_img = self.open_image(IMG_BASE_DIRECTORY + "/Button/Information.png", (40, 40))
 
         # create buy button.
-        self.__buy_img = self.open_image(r"./Picture/Button/Buy.png", (40, 40))
+        self.__buy_img = self.open_image(IMG_BASE_DIRECTORY + "/Button/Buy.png", (40, 40))
 
         self.__coordinates_dict = {1: {"x": 5, "y": 20}, 2: {"x": 280, "y": 20}, 3: {"x": 560, "y": 20}, 4: {"x": 5, "y": 120}, 5: {"x": 280, "y": 120}, 6: {"x": 560, "y": 120}, 7: {"x": 5, "y": 220}, 8: {
             "x": 280, "y": 220}, 9: {"x": 560, "y": 220}, 10: {"x": 5, "y": 320}, 11: {"x": 280, "y": 320}, 12: {"x": 560, "y": 320}, 13: {"x": 5, "y": 420}, 14: {"x": 280, "y": 420}, 15: {"x": 560, "y": 420}}
         # next button
-        self.__next_img = self.open_image(r"./Picture/Button/Next.png", (50, 50))
+        self.__next_img = self.open_image(IMG_BASE_DIRECTORY + "/Button/Next.png", (50, 50))
         self.__next_btn = tk.Button(canvas, image=self.__next_img, border=0, bg="#FBF7EF",
                                     command=lambda: next_page(self.__old_label_list))
         self.__next_btn.place(x=870, y=40)
         self.__button_list.append(self.__next_btn)
 
         # previous button
-        self.__previous_img = self.open_image(r"./Picture/Button/Back.png", (50, 50))
+        self.__previous_img = self.open_image(IMG_BASE_DIRECTORY + "/Button/Back.png", (50, 50))
         self.__previous_btn = tk.Button(canvas, image=self.__previous_img, border=0, bg="#FBF7EF",
                                         command=lambda: previous_page(self.__old_label_list))
         self.__previous_btn.place(x=820, y=40)
         self.__button_list.append(self.__previous_btn)
 
         # home button
-        self.__home_img = self.open_image(r"./Picture/Button/Home.png", (50, 50))
+        self.__home_img = self.open_image(IMG_BASE_DIRECTORY + "/Button/Home.png", (50, 50))
         self.__home_btn = tk.Button(canvas, image=self.__home_img, border=0,
                                     bg="#FBF7EF", command=lambda: self.category_page(canvas))
         self.__home_btn.place(x=930, y=40)
@@ -339,7 +342,7 @@ class MedicationPage():
         self.__img_dict.clear()                               
         self.clear_previous_page(canvas)
         # background image
-        self.__bg_img = Image.open(r"./Picture/CategoryPage/bg-cate.png")
+        self.__bg_img = Image.open(IMG_BASE_DIRECTORY + "/CategoryPage/bg-cate.png")
         self.__bg_img = ImageTk.PhotoImage(self.__bg_img)
         canvas.create_image(0, 0, anchor="nw", image=self.__bg_img)
 
@@ -370,14 +373,14 @@ class MedicationPage():
         self.category_template(canvas)
 
         # next button
-        self.__next_img = self.open_image(r"./Picture/CategoryPage/bt-next.png", (150, 120))
+        self.__next_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-next.png", (150, 120))
 
         self.__next_btn = tk.Button(border=0, image=self.__next_img,height=110, width=115, bg="#FBF7EF",
                                     padx=5, pady=5, command=lambda: self.category_page_2(canvas))
         self.__next_btn.place(x=730, y=670)
         self.__button_list.append(self.__next_btn)
 
-        self.__recommen_img = self.open_image(r"./Picture/CategoryPage/bt-rec.png", (300, 230))
+        self.__recommen_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-rec.png", (300, 230))
         self.__recommen_btn = tk.Button(border=0, image=self.__recommen_img,
                                         height=50, width=300, bg="#FBF7EF",
                                         padx=5, pady=5, command=lambda: self.medication_page(canvas, 
@@ -390,36 +393,36 @@ class MedicationPage():
         rest category of the medication."""
         self.__img_dict.clear()
         self.clear_previous_page(canvas)
-        self.__bg_img = self.open_image(r"./Picture/CategoryPage2/BG-cate2.png", (0, 0))
+        self.__bg_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/BG-cate2.png", (0, 0))
         canvas.create_image(0, 0, anchor="nw", image=self.__bg_img)
 
         # Haematological button
-        haemato__img = self.open_image(r"./Picture/CategoryPage2/haematological.png", (280, 230))
+        haemato__img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/haematological.png", (280, 230))
         self.__img_dict[7] = haemato__img
 
         # pain button
-        pain_img = self.open_image(r"./Picture/CategoryPage2/pain.png", (280, 230))
+        pain_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/pain.png", (280, 230))
         self.__img_dict[8] = pain_img
 
         # respiratory button
-        respiratory_img = self.open_image(r"./Picture/CategoryPage2/respiratory.png", (280, 230))
+        respiratory_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/respiratory.png", (280, 230))
         self.__img_dict[9] = respiratory_img
 
         # reproductive button
-        reproductive_img = self.open_image(r"./Picture/CategoryPage2/reproductive.png", (280, 230))
+        reproductive_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/reproductive.png", (280, 230))
         self.__img_dict[10] = reproductive_img
 
         # musculoskeletal button
-        musculoskeletal_img = self.open_image(r"./Picture/CategoryPage2/musculoskeletal.png",
+        musculoskeletal_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/musculoskeletal.png",
                                                (280, 230))
         self.__img_dict[11] = musculoskeletal_img
 
         # eyes button
-        eyes_img = self.open_image(r"./Picture/CategoryPage2/eye.png", (280, 230))
+        eyes_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/eye.png", (280, 230))
         self.__img_dict[12] = eyes_img
 
         # previous button
-        self.__prev_img = self.open_image(r"./Picture/CategoryPage/bt-back.png", (150, 120))
+        self.__prev_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-back.png", (150, 120))
         self.__prev_btn = tk.Button(border=0, image=self.__prev_img,
                                     height=110, width=115, bg="#FBF7EF",
                                     padx=5, pady=5, command=lambda: self.category_page(canvas))
@@ -427,14 +430,14 @@ class MedicationPage():
         self.__button_list.append(self.__prev_btn)
 
         #next button
-        self.__next_img = self.open_image(r"./Picture/CategoryPage/bt-next.png", (150, 120))
+        self.__next_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-next.png", (150, 120))
         self.__next_btn = tk.Button(border=0, image=self.__next_img,
                                     height=110, width=115, bg="#FBF7EF",
                                     padx=5, pady=5, command=lambda: self.category_page_3(canvas))
         self.__next_btn.place(x=800, y=670)
         self.__button_list.append(self.__next_btn)
         
-        self.__recommen_img = self.open_image(r"./Picture/CategoryPage/bt-rec.png", (300, 230))
+        self.__recommen_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-rec.png", (300, 230))
         self.__recommen_btn = tk.Button(border=0, image=self.__recommen_img,
                                         height=50, width=300, bg="#FBF7EF",
                                         padx=5, pady=5, command=lambda: self.medication_page(canvas, 
@@ -448,21 +451,21 @@ class MedicationPage():
         self.__img_dict.clear()
         self.clear_previous_page(canvas)
 
-        self.__bg_img = self.open_image(r"./Picture/CategoryPage2/BG-cate2.png", (0, 0))
+        self.__bg_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage2/BG-cate2.png", (0, 0))
         canvas.create_image(0, 0, anchor="nw", image=self.__bg_img)
 
         #other condition button
-        other_condition_img = self.open_image(r"./Picture/CategoryPage3/Other.png", (280, 230))
+        other_condition_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage3/Other.png", (280, 230))
         self.__img_dict[13] = other_condition_img
         # previous button
-        self.__prev_img = self.open_image(r"./Picture/CategoryPage/bt-back.png", (150, 120))
+        self.__prev_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-back.png", (150, 120))
         self.__prev_btn = tk.Button(border=0, image=self.__prev_img,
                                     height=110, width=115, bg="#FBF7EF",
                                     padx=5, pady=5, command=lambda: self.category_page_2(canvas))
         self.__prev_btn.place(x=730, y=670)
         self.__button_list.append(self.__prev_btn)
 
-        self.__recommen_img = self.open_image(r"./Picture/CategoryPage/bt-rec.png", (300, 230))
+        self.__recommen_img = self.open_image(IMG_BASE_DIRECTORY + "/CategoryPage/bt-rec.png", (300, 230))
         self.__recommen_btn = tk.Button(border=0, image=self.__recommen_img,
                                         height=50, width=300, bg="#FBF7EF",
                                         padx=5, pady=5, command=lambda: self.medication_page(canvas, 
@@ -737,18 +740,18 @@ class MedicationPage():
         self.clear_previous_page(canvas)
         self.__img_dict.clear()
 
-        bg_img = self.open_image(r"./Picture/MuscoloskeletalPage/BGMUSCOLOSKELETAL.png", (0, 0))
+        bg_img = self.open_image(IMG_BASE_DIRECTORY + "/MuscoloskeletalPage/BGMUSCOLOSKELETAL.png", (0, 0))
         self.__img_dict["bg_img"] = bg_img
 
         self.__category_list = ["Gout", "Osteoporosis", "Arthritis"]
 
-        gout_img = self.open_image(r"./Picture/MuscoloskeletalPage/GOUT.png", (400, 300))
+        gout_img = self.open_image(IMG_BASE_DIRECTORY + "/MuscoloskeletalPage/GOUT.png", (400, 300))
         self.__img_dict[1] = gout_img
 
-        osteoporosis_img = self.open_image(r"./Picture/MuscoloskeletalPage/OSTEOPOROSIS.png", (400, 300))
+        osteoporosis_img = self.open_image(IMG_BASE_DIRECTORY + "/MuscoloskeletalPage/OSTEOPOROSIS.png", (400, 300))
         self.__img_dict[2] = osteoporosis_img
 
-        arthritis_img = self.open_image(r"./Picture/MuscoloskeletalPage/ARTHRITIS.png", (400, 300))
+        arthritis_img = self.open_image(IMG_BASE_DIRECTORY + "/MuscoloskeletalPage/ARTHRITIS.png", (400, 300))
         self.__img_dict[3] = arthritis_img
 
         self.template_page(canvas, self.__category_list)
@@ -758,15 +761,15 @@ class MedicationPage():
         self.clear_previous_page(canvas)    
         self.__img_dict.clear()
 
-        bg_img = self.open_image(r"./Picture/EyesPage/BG-EYES.png", (0, 0))
+        bg_img = self.open_image(IMG_BASE_DIRECTORY + "/EyesPage/BG-EYES.png", (0, 0))
         self.__img_dict["bg_img"] = bg_img
 
         self.__category_list = ["Glaucoma", "Mydriasis"]
 
-        glaucoma_img = self.open_image(r"./Picture/EyesPage/GLAUCOMA.png", (400, 300))
+        glaucoma_img = self.open_image(IMG_BASE_DIRECTORY + "/EyesPage/GLAUCOMA.png", (400, 300))
         self.__img_dict[1] = glaucoma_img
 
-        mydriasis_img = self.open_image(r"./Picture/EyesPage/MYDRIASIS.png", (400, 300))
+        mydriasis_img = self.open_image(IMG_BASE_DIRECTORY + "/EyesPage/MYDRIASIS.png", (400, 300))
         self.__img_dict[2] = mydriasis_img
 
         self.template_page(canvas, self.__category_list)
@@ -776,32 +779,32 @@ class MedicationPage():
         self.clear_previous_page(canvas)
         self.__img_dict.clear()
 
-        bg_img = self.open_image(r"./Picture/OthersPage/BG-OTHERS.png", (0, 0))
+        bg_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/BG-OTHERS.png", (0, 0))
         self.__img_dict["bg_img"] = bg_img
         
         self.__category_list = ["Fever", "Fungal", "Haemorrhoid",
                                  "Schizophrenia", "Smoking", "Supplement",
                                  "Vaccines"]
         
-        fever_img = self.open_image(r"./Picture/OthersPage/FEVER.png", (400, 300))
+        fever_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/FEVER.png", (400, 300))
         self.__img_dict[1] = fever_img
 
-        fungal_img = self.open_image(r"./Picture/OthersPage/FUNGAL.png", (400, 300))
+        fungal_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/FUNGAL.png", (400, 300))
         self.__img_dict[2] = fungal_img
 
-        haemorrhoid_img = self.open_image(r"./Picture/OthersPage/HAEMORRHOID.png", (400, 300))
+        haemorrhoid_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/HAEMORRHOID.png", (400, 300))
         self.__img_dict[3] = haemorrhoid_img
 
-        schizophrenia_img = self.open_image(r"./Picture/OthersPage/SCHIZOPHRENIA.png", (400, 300))
+        schizophrenia_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/SCHIZOPHRENIA.png", (400, 300))
         self.__img_dict[4] = schizophrenia_img
 
-        smoking_img = self.open_image(r"./Picture/OthersPage/SMOKING.png", (400, 300))
+        smoking_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/SMOKING.png", (400, 300))
         self.__img_dict[5] = smoking_img
 
-        supplement_img = self.open_image(r"./Picture/OthersPage/SUPPLEMENT.png", (400, 300))
+        supplement_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/SUPPLEMENT.png", (400, 300))
         self.__img_dict[6] = supplement_img
 
-        vaccines_img = self.open_image(r"./Picture/OthersPage/VACCINES.png", (400, 300))
+        vaccines_img = self.open_image(IMG_BASE_DIRECTORY + "/OthersPage/VACCINES.png", (400, 300))
         self.__img_dict[7] = vaccines_img
 
         self.template_page(canvas, self.__category_list)

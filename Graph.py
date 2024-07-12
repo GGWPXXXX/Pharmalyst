@@ -11,7 +11,8 @@ import matplotlib.cm as cm
 
 class Graph:
     def __init__(self) -> None:
-        self.__med_db = pd.read_excel('./Data/DataSet/Medicine_description.xlsx')
+        self.__med_db = pd.read_excel(
+            './Data/DataSet/Medicine_description.xlsx')
         self.__order_db = pd.read_csv("./Data/Admin/Order.csv")
         self.__order_repo = OrderRepository()
         self.__plt_list = []
@@ -25,12 +26,12 @@ class Graph:
     @property
     def plt_list(self) -> list:
         return self.__plt_list
-    
+
     @property
-    def canvas_list(self)   -> list:
+    def canvas_list(self) -> list:
         return self.__canvas_list
-      
-    def distribution_graph(self, type:str, main_canvas:tk.Canvas) -> None:
+
+    def distribution_graph(self, type: str, main_canvas: tk.Canvas) -> None:
         """This method generates a distribution graph based on medication quantity data stored in the system. 
         The type parameter specifies the type of graph to be generated, either a histogram or a box plot. The graph 
         is displayed in the main_canvas tkinter canvas object. The method also calculates and stores several descriptive 
@@ -46,24 +47,27 @@ class Graph:
 
         None. The generated graph is displayed in the main_canvas object and the descriptive statistics are stored in the instance variable __descriptive."""
         x = np.arange(500, 1001, 50)
-        llist = [((self.__med_db.Quantity > i) & (self.__med_db.Quantity < i+50)).sum() for i in x]
+        llist = [((self.__med_db.Quantity > i) & (
+            self.__med_db.Quantity < i+50)).sum() for i in x]
         llist.remove(0)
         self.__descriptive["mean"] = np.mean(llist)
         self.__descriptive["median"] = np.median(llist)
         self.__descriptive["std"] = np.std(llist)
         self.__descriptive["variance"] = np.var(llist)
         self.__descriptive["min"] = np.min(llist)
-        self.__descriptive["max"] = np.max(llist) 
+        self.__descriptive["max"] = np.max(llist)
         fig = plt.figure(figsize=(6, 4), dpi=100)
 
         if type == "histogram":
             bin_edges = np.arange(500, 1050, 50)
-            plt.hist(x=x[:-1], weights=llist, bins=bin_edges, range=(500, 1000))  
+            plt.hist(x=x[:-1], weights=llist,
+                     bins=bin_edges, range=(500, 1000))
             plt.xlabel('Amount of medications')
             plt.ylabel("Frequency")
             plt.title("Graph Show Distribution")
             plt.grid(True)
-            plt.xticks(bin_edges[:-1] + 25, [f"[{bin_edges[i]}, {bin_edges[i+1]})" for i in range(len(bin_edges) - 1)], rotation=90)
+            plt.xticks(bin_edges[:-1] + 25, [f"[{bin_edges[i]}, {bin_edges[i+1]})" for i in range(
+                len(bin_edges) - 1)], rotation=90)
 
         else:
             ax = fig.add_subplot(111)  # Create a subplot for the boxplot
@@ -74,14 +78,18 @@ class Graph:
             ax.set_title("Graph Show Distribution")
             ax.grid(True)
 
-            summary_stats = ax.boxplot(self.__med_db.Quantity, showfliers=False, showmeans=True)
+            summary_stats = ax.boxplot(
+                self.__med_db.Quantity, showfliers=False, showmeans=True)
 
             for line in summary_stats['medians']:
-                ax.text(1.1, line.get_ydata()[0] + 0.5, f"Median: {line.get_ydata()[0]:.2f}")
+                ax.text(1.1, line.get_ydata()[
+                        0] + 0.5, f"Median: {line.get_ydata()[0]:.2f}")
 
             for line in summary_stats['boxes']:
-                ax.text(1.1, line.get_ydata()[0], f"Q1: {line.get_ydata()[0]:.2f}")
-                ax.text(1.1, line.get_ydata()[3], f"Q3: {line.get_ydata()[3]:.2f}")
+                ax.text(1.1, line.get_ydata()[0],
+                        f"Q1: {line.get_ydata()[0]:.2f}")
+                ax.text(1.1, line.get_ydata()[3],
+                        f"Q3: {line.get_ydata()[3]:.2f}")
 
         plt.tight_layout()
 
@@ -91,8 +99,8 @@ class Graph:
         canvas_widget.place(x=150, y=230)
         self.__plt_list.append(plt)
         self.__canvas_list.append(canvas_widget)
-        
-    def time_series_graph(self, type:str, main_canvas:tk.Canvas) -> None:
+
+    def time_series_graph(self, type: str, main_canvas: tk.Canvas) -> None:
         """This method generates a time series graph based on the number of orders per month from 2021 to 2023. 
         The graph can be either a line graph or a bar graph. The method takes two parameters: the type of graph
           (either "line graph" or "bar graph") and the canvas where the graph will be displayed.
@@ -104,18 +112,25 @@ class Graph:
         Returns:
         None"""
         self.__order_db['Date'] = pd.to_datetime(self.__order_db['Date'])
-        #create a new dataframe with the number of orders per month from 2021-2023
-        self.__year_sales = self.__order_db.groupby([self.__order_db.Date.dt.year, self.__order_db.Date.dt.month]).size().unstack(level=0)
+        # create a new dataframe with the number of orders per month from 2021-2023
+        self.__year_sales = self.__order_db.groupby(
+            [self.__order_db.Date.dt.year, self.__order_db.Date.dt.month]).size().unstack(level=0)
         fig = plt.figure(figsize=(6, 4), dpi=100)
 
         for num in range(2021, 2024):
-            self.__descriptive["mean_" + str(num)] = self.__year_sales[num].mean()
-            self.__descriptive["median_" + str(num)] = self.__year_sales[num].median()
-            self.__descriptive["std_" + str(num)] = self.__year_sales[num].std()
-            self.__descriptive["variance_" + str(num)] = self.__year_sales[num].var()
-            self.__descriptive["min_" + str(num)] = self.__year_sales[num].min()
-            self.__descriptive["max_" + str(num)] = self.__year_sales[num].max()
-        
+            self.__descriptive["mean_" +
+                               str(num)] = self.__year_sales[num].mean()
+            self.__descriptive["median_" +
+                               str(num)] = self.__year_sales[num].median()
+            self.__descriptive["std_" +
+                               str(num)] = self.__year_sales[num].std()
+            self.__descriptive["variance_" +
+                               str(num)] = self.__year_sales[num].var()
+            self.__descriptive["min_" +
+                               str(num)] = self.__year_sales[num].min()
+            self.__descriptive["max_" +
+                               str(num)] = self.__year_sales[num].max()
+
         if type == "line graph":
             plt.plot(self.__year_sales, marker="o")
             plt.xlabel("Month")
@@ -125,7 +140,7 @@ class Graph:
             plt.yticks(np.arange(0, 170, 20))
             plt.legend(self.__year_sales.columns)
             plt.grid(True)
-            
+
         elif type == "bar graph":
             x = np.arange(len(self.__year_sales.index))
             width = 0.2
@@ -135,7 +150,8 @@ class Graph:
             plt.xlabel("Month")
             plt.ylabel("Number of orders")
             plt.title("Show number of orders per month from 2021-2023")
-            plt.xticks(ticks=x + width, labels=self.__year_sales.index, rotation=45)
+            plt.xticks(ticks=x + width,
+                       labels=self.__year_sales.index, rotation=45)
             plt.legend(self.__year_sales.columns)
             plt.grid(True)
 
@@ -146,7 +162,7 @@ class Graph:
         canvas_widget.place(x=150, y=230)
         self.__plt_list.append(plt)
         self.__canvas_list.append(canvas_widget)
-    
+
     def network_graph(self, type: str, canvas: tk.Tk) -> None:
         """This method network_graph creates and displays a network graph using the NetworkX 
         library based on the customer's medication orders. The graph can be displayed in either a "category" 
@@ -176,7 +192,8 @@ class Graph:
             for i, med in enumerate(medications):
                 name, category = med[1], med[2]
                 if category not in connected_categories:
-                    node_ids = [node_id for node_id in category_nodes[category] if node_id != f"{category}_{i}"]
+                    node_ids = [
+                        node_id for node_id in category_nodes[category] if node_id != f"{category}_{i}"]
                     for other_node_id in node_ids:
                         G.add_edge(f"{category}_{i}", other_node_id)
                     connected_categories.add(category)
@@ -205,7 +222,8 @@ class Graph:
         cmap = cm.rainbow
         num_nodes = len(G.nodes)
         node_colors = [cmap(i/num_nodes) for i in range(num_nodes)]
-        nx.draw(G, pos, with_labels=True, node_color=node_colors, edge_color='black', font_size=7, width=1, alpha=0.7, node_shape="d", ax=ax)
+        nx.draw(G, pos, with_labels=True, node_color=node_colors, edge_color='black',
+                font_size=7, width=1, alpha=0.7, node_shape="d", ax=ax)
         plt.tight_layout()
         canvas = FigureCanvasTkAgg(fig, master=canvas)
         canvas.draw()
